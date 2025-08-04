@@ -1,0 +1,100 @@
+### API Testing untuk Post Controller CodeIgniter 4
+### Base URL - sesuaikan dengan setup lokal Anda
+@baseUrl = http://localhost:8080
+@apiUrl = {{baseUrl}}/api/post
+
+### 1. GET ALL POSTS
+### Method: GET /api/post
+GET {{apiUrl}}
+Accept: application/json
+Content-Type: application/json
+
+###
+
+### 2. GET SINGLE POST BY ID
+### Method: GET /api/post/{id}
+GET {{apiUrl}}/1
+Accept: application/json
+Content-Type: application/json
+
+###
+
+### 3. CREATE NEW POST (JSON Request)
+### Method: POST /api/post
+POST {{apiUrl}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Post Title dari REST Client",
+  "content": "Ini adalah content post yang dibuat menggunakan REST client dengan format JSON."
+}
+
+### 5. UPDATE POST (JSON Request)
+### Method: PUT /api/post/{id}
+PUT {{apiUrl}}/1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Updated Post Title",
+  "content": "Ini adalah content yang sudah diupdate menggunakan method PUT."
+}
+
+### 7. DELETE POST
+### Method: DELETE /api/post/{id}
+DELETE {{apiUrl}}/3
+Accept: application/json
+Content-Type: application/json
+
+###
+
+### 8. TEST ERROR CASES
+
+### GET Non-existent post
+GET {{apiUrl}}/999
+Accept: application/json
+Content-Type: application/json
+
+###
+
+### CREATE with validation error (empty title)
+POST {{apiUrl}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "",
+  "content": "Content tanpa title"
+}
+
+###
+
+### CREATE with validation error (short title)
+POST {{apiUrl}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "AB",
+  "content": "Title terlalu pendek"
+}
+
+###
+
+### UPDATE non-existent post
+PUT {{apiUrl}}/999
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Update Post Yang Tidak Ada",
+  "content": "Ini akan menghasilkan error 404"
+}
+
+###
+
+### DELETE non-existent post
+DELETE {{apiUrl}}/999
+Accept: application/json
+Content-Type: application/json
